@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds">
+
+	<!--<property name="logPath" value="/data/logs/kafka-hbase"/>-->
+	<property name="logPath" value="/Users/gad/Desktop/kafka-cdh"/>
+
+  	<!-- 文件輸出 -->   
+  	<appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  		<append>true</append> 
+	    <encoder>  
+	        <pattern>  
+	            %-5level %date{yyyy-MM-dd HH:mm:ss} - %msg%n  
+	        </pattern>  
+	        <charset>UTF-8</charset> <!-- 此处设置字符集 -->  
+	    </encoder>
+	    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">  
+	      	<fileNamePattern>${logPath}/kafka_hbase_%d{yyyyMMdd}.log</fileNamePattern>
+	    </rollingPolicy>  
+	    <prudent>true</prudent>   
+  	</appender>  
+  
+  
+  	<!-- 控制台輸出 -->  
+  	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">  
+      	<encoder>  
+          	<pattern>  
+              	%-5level %date{yyyy-MM-dd HH:mm:ss} - %msg%n 
+          	</pattern>  
+          	<charset>UTF-8</charset> <!-- 此处设置字符集 -->  
+      	</encoder>  
+    	<filter class="ch.qos.logback.classic.filter.ThresholdFilter">  
+      		<level>@log.console.level@</level>  
+    	</filter>  
+  	</appender>
+  	
+  	<logger name="org.springframework" level="WARN" additivity="true"></logger>
+  	<logger name="org.hibernate" level="WARN" additivity="true"></logger>
+  	<logger name="ch.qos.logback" level="WARN" additivity="true"></logger>
+	<logger name="org.apache.kafka" level="WARN" additivity="true"></logger>
+	<logger name="org.apache.zookeeper" level="WARN" additivity="true"></logger>
+	<logger name="org.apache.hadoop" level="ERROR" additivity="true"></logger>
+   	 
+  	<root level="info">
+    	<appender-ref ref="file" />  
+    	<appender-ref ref="console" />  
+  	</root>  
+</configuration>

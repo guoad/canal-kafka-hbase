@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="kafka-hbase:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="kafka-hbase-1.0.0.war">
+      <element id="artifact" artifact-name="kafka-hbase:war exploded" />
+    </root>
+  </artifact>
+</component>
