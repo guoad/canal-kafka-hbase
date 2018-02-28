@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -35,6 +36,15 @@ public class HBaseServiceImpl implements HBaseService {
      */
     public void createTable(String tableName, String[] columnFamilies, boolean preBuildRegion) throws Exception {
         hBaseDao.createTable(tableName, columnFamilies, preBuildRegion);
+    }
+
+    @Override
+    public void deleteTable(String tableName) {
+        try {
+            hBaseDao.deleteTable(tableName);
+        } catch (IOException e) {
+            logger.error("HBase delete table failed.", e);
+        }
     }
 
     /**

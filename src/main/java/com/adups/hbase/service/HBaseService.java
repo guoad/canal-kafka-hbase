@@ -17,9 +17,16 @@ public interface HBaseService {
      * @param tableName         表名称
      * @param columnFamilies    列族名称数组
      * @param preBuildRegion    是否预分配Region   true:是;   false:否  默认16个region，rowkey生成的时候记得指定前缀
-     * @return                  返回执行时间 (单位: 毫秒)
+     * @return
      */
     void createTable(String tableName, String[] columnFamilies, boolean preBuildRegion) throws Exception;
+
+    /**
+     * 创建表
+     * @param tableName         表名称
+     * @return
+     */
+    void deleteTable(String tableName);
 
     /**
      * 单行单个列族存储数据

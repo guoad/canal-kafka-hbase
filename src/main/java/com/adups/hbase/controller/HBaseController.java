@@ -27,6 +27,13 @@ public class HBaseController {
 		return "create table success!";
 	}
 
+	//http://localhost:18080/hbase/command/table/delete/
+	@RequestMapping(value = "/hbase/command/table/delete", method = RequestMethod.GET)
+	public String deleteTable(@RequestParam(value = "tableName") String tableName) throws Exception {
+		hBaseService.deleteTable(tableName);
+		return "delete table success!";
+	}
+
 	//http://localhost:18080/hbase/command/scan?tableName="gemini.t_order"
 	@RequestMapping(value = "/hbase/command/scan", method = RequestMethod.GET)
 	public String scanRegexRowKey(@RequestParam(value = "tableName") String tableName) {
